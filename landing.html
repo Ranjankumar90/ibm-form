@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your portfolio proves your work. Build it in 90 days.</title>
+<style>
+  :root{
+    --bg: #0a0a0c;
+    --bg-alt: #0e0e11;
+    --line: #232326;
+    --text: #f4f4f2;
+    --muted: #8b8b91;
+    --blue: #3b6cf0;
+    --blue-soft: #9db4f5;
+    --mono: 'JetBrains Mono', 'IBM Plex Mono', monospace;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:var(--sans);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:1180px;margin:0 auto;padding:0 40px;}
+  .eyebrow{
+    font-family:var(--mono);
+    font-size:11px;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--blue-soft);
+  }
+  .grid-bg{position:relative;}
+  .grid-bg::before{
+    content:'';position:absolute;inset:0;pointer-events:none;z-index:0;
+    background-image:
+      linear-gradient(var(--line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--line) 1px, transparent 1px);
+    background-size:64px 64px;
+    background-position:center top;
+    -webkit-mask-image:linear-gradient(to bottom, black, transparent 85%);
+    mask-image:linear-gradient(to bottom, black, transparent 85%);
+  }
+  .grid-bg > .wrap{position:relative;z-index:1;}
+
+  /* ---------- NAV ---------- */
+    header{
+    position:sticky;top:0;z-index:50;
+    background:rgba(10,10,12,.92);
+    backdrop-filter:blur(12px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:12px 40px;max-width:1180px;margin:0 auto;
+  }
+  .brand{display:flex;align-items:center;gap:10px;font-family:var(--mono);font-size:14px;letter-spacing:.08em;}
+  .brand .mark{
+    width:22px;height:22px;background:var(--blue);border-radius:6px;
+    display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;
+    box-shadow: 0 0 10px rgba(43,92,217,0.4);
+  }
+  .nav-links{display:flex;gap:32px;font-size:14px;color:var(--muted);}
+  .nav-links a:hover{color:var(--text);}
+  .nav-links a{position:relative;padding:4px 0;transition:color .15s ease;}
+  .nav-links a.active{color:var(--text);font-weight:500;}
+  .nav-links a.active::after{
+    content:'';position:absolute;left:0;right:0;bottom:-12px;height:2px;background:var(--blue);
+  }
+  .nav-right{display:flex;align-items:center;gap:16px;}
+  .status-pill{
+    display:inline-flex;align-items:center;gap:7px;padding:4px 11px;border-radius:20px;
+    background:rgba(43,92,217,0.1);border:1px solid rgba(43,92,217,0.25);
+    color:var(--blue-soft);font-size:12px;font-weight:500;font-family:var(--mono);
+  }
+  .status-pill .dot{
+    width:6px;height:6px;border-radius:50%;background:#3b82f6;box-shadow:0 0 6px #3b82f6;
+  }
+
+  /* ---------- ANNOUNCEMENT TICKER BANNER ---------- */
+  .ticker{
+    background:linear-gradient(90deg, rgba(20,26,46,0.95), rgba(10,12,20,0.95));
+    border-bottom:1px solid rgba(59,130,246,0.2);
+    padding:7px 0;
+    font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;color:#94a3b8;
+  }
+  .ticker .wrap{display:flex;justify-content:space-between;align-items:center;}
+  .ticker-text{display:flex;align-items:center;gap:8px;}
+  .ticker-dot{
+    width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;
+    display:inline-block;animation:pulse-green 2s infinite;
+  }
+  @keyframes pulse-green{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.4;transform:scale(0.85);}}
+  .ticker .apply{color:#60a5fa;font-weight:600;display:inline-flex;align-items:center;gap:4px;transition:color 0.2s;}
+  .ticker .apply:hover{color:#93c5fd;}
+
+  /* ---------- HERO ---------- */
+  .hero{padding:28px 0 52px;position:relative;}
+  .hero-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:48px;align-items:center;}
+  .eyebrow{
+    display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;
+    background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);
+    color:var(--blue-soft);font-family:var(--mono);font-size:11.5px;letter-spacing:.07em;
+    margin-bottom:16px;text-transform:uppercase;
+  }
+  .hero h1{
+    font-size:52px;line-height:1.08;letter-spacing:-.025em;font-weight:700;margin:0 0 20px;color:#ffffff;
+  }
+  .hero h1 .accent{color:var(--blue-soft);}
+  .hero p.lead{color:#94a3b8;font-size:16px;line-height:1.6;max-width:480px;margin-bottom:28px;}
+  .hero-ctas{display:flex;align-items:center;gap:20px;margin-bottom:20px;}
+  .link-arrow{font-size:14px;font-weight:600;display:inline-flex;align-items:center;gap:6px;}
+  .footnote{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:8px;}
+  .footnote svg{flex-shrink:0;}
+
+  .hero-img{
+    position:relative;border-radius:14px;overflow:hidden;aspect-ratio:4/5;
+    background:radial-gradient(circle at 75% 15%, rgba(59,108,240,.35), transparent 55%), linear-gradient(160deg, #14161c, #0a0a0c 75%);
+    border:1px solid var(--line);
+    width:100%;height:auto;
+  }
+  .hero-art{display:block;width:100%;height:100%;object-fit:cover;border-radius:14px;}
+  .hero-tag{
+    position:absolute;left:16px;bottom:16px;font-family:var(--mono);font-size:11px;color:#fff;z-index:2;
+  }
+  .hero-tag-r{
+    position:absolute;right:16px;bottom:16px;font-family:var(--mono);font-size:10px;color:#fff;text-align:right;letter-spacing:.08em;z-index:2;line-height:1.5;
+  }
+
+  /* ---------- STATS ---------- */
+  .stats{border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:36px 0;}
+  .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);}
+  .stats-grid div{border-left:1px solid var(--line);padding:0 28px;}
+  .stats-grid div:first-child{border-left:none;padding-left:0;}
+  .stat-num{font-size:26px;font-weight:600;letter-spacing:-.01em;}
+  .stat-label{font-size:13px;color:var(--muted);margin-top:4px;}
+
+  /* ---------- SECTION HEADS ---------- */
+  section{padding:110px 0;}
+  .head{max-width:640px;margin-bottom:56px;}
+  .head h2{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin:14px 0 16px;}
+  .head h2 .accent{color:var(--blue-soft);}
+  .head p{color:var(--muted);font-size:15.5px;max-width:480px;}
+
+  /* ---------- ROADMAP ---------- */
+  .roadmap{border-top:1px solid var(--line);}
+  .roadmap-body{display:grid;grid-template-columns:.85fr 1.15fr;gap:60px;}
+  .steps{border-top:1px solid var(--line);}
+  .step{
+    display:grid;grid-template-columns:50px 1fr 40px;gap:20px;
+    padding:30px 0;border-bottom:1px solid var(--line);align-items:start;
+  }
+  .step-num{font-family:var(--mono);color:var(--blue-soft);font-size:13px;padding-top:2px;}
+  .step h3{font-size:19px;font-weight:600;margin-bottom:8px;}
+  .step p{color:var(--muted);font-size:14.5px;max-width:420px;}
+  .step-icon{
+    width:36px;height:36px;border:1px solid var(--line);border-radius:8px;
+    display:flex;align-items:center;justify-content:center;color:var(--blue-soft);
+  }
+
+  /* ---------- FEATURES ---------- */
+  .features{border-top:1px solid var(--line);}
+  .feat-head{display:grid;grid-template-columns:1fr 1.3fr;gap:40px;align-items:end;margin-bottom:56px;}
+  .feat-grid{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);border-left:1px solid var(--line);}
+  .feat{border-right:1px solid var(--line);border-bottom:1px solid var(--line);padding:26px 22px;min-height:210px;display:flex;flex-direction:column;justify-content:space-between;}
+  .feat-icon{color:var(--blue-soft);margin-bottom:34px;}
+  .feat-num{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:4px;}
+  .feat h4{font-size:15.5px;font-weight:600;margin-bottom:8px;}
+  .feat p{font-size:13px;color:var(--muted);line-height:1.5;}
+
+  /* ---------- WHO FOR ---------- */
+  .whofor{border-top:1px solid var(--line);}
+  .who-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;}
+  .who-grid h2{font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin:14px 0 0;}
+  .who-grid h2 .accent{color:var(--blue-soft);}
+  .who-copy{color:var(--muted);font-size:15.5px;padding-top:8px;}
+  .who-list{margin-top:34px;border-top:1px solid var(--line);}
+  .who-item{display:grid;grid-template-columns:34px 1fr;gap:16px;padding:22px 0;border-bottom:1px solid var(--line);}
+  .who-item .ic{color:var(--blue-soft);padding-top:2px;}
+  .who-item h5{font-size:15px;font-weight:600;margin-bottom:4px;}
+  .who-item p{font-size:13.5px;color:var(--muted);}
+
+  /* ---------- COUNTDOWN CTA ---------- */
+  .countdown{border-top:1px solid var(--line);}
+  .cd-inner{display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:end;}
+  .cd-timer{display:flex;gap:26px;}
+  .cd-timer div{text-align:center;}
+  .cd-val{font-family:var(--mono);font-size:28px;font-weight:600;}
+  .cd-label{font-family:var(--mono);font-size:10px;color:var(--muted);letter-spacing:.1em;margin-top:4px;}
+  .cd-sub{font-size:11px;color:var(--muted);margin-top:10px;font-family:var(--mono);letter-spacing:.06em;}
+
+  /* ---------- FAQ ---------- */
+  .faq{border-top:1px solid var(--line);}
+  .faq-layout{display:grid;grid-template-columns:1fr 1.3fr;gap:60px;}
+  .faq-list{border-top:1px solid var(--line);}
+  .faq-item{border-bottom:1px solid var(--line);}
+  .faq-q{
+    width:100%;text-align:left;background:none;border:none;color:var(--text);
+    font-size:15.5px;font-weight:500;padding:22px 0;display:flex;justify-content:space-between;align-items:center;
+    cursor:pointer;font-family:var(--sans);
+  }
+  .faq-q svg{transition:transform .2s ease;color:var(--blue-soft);flex-shrink:0;}
+  .faq-item.open .faq-q svg{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
+  .faq-a p{padding-bottom:22px;color:var(--muted);font-size:14.5px;max-width:520px;}
+  .faq-item.open .faq-a{max-height:200px;}
+
+  /* ---------- FINAL CTA ---------- */
+  .final{border-top:1px solid var(--line);}
+  .final-inner{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;}
+  .final h2{font-size:44px;font-weight:600;letter-spacing:-.02em;line-height:1.12;margin:14px 0 16px;}
+  .final h2 .accent{color:var(--blue-soft);}
+  .final p{color:var(--muted);font-size:15.5px;max-width:400px;}
+
+  /* ---------- CONTACT ---------- */
+  .contact{border-top:1px solid var(--line);}
+  .contact-inner{display:flex;justify-content:space-between;align-items:end;gap:40px;flex-wrap:wrap;}
+  .contact h2{font-size:36px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin-top:14px;}
+  .contact h2 .accent{color:var(--blue-soft);}
+  .agent-card{
+    background:var(--bg-alt);border:1px solid var(--line);border-radius:12px;
+    padding:16px 20px;display:flex;align-items:center;gap:14px;min-width:280px;
+  }
+  .avatar{
+    width:38px;height:38px;border-radius:50%;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;
+  }
+  .agent-card h6{font-size:14px;font-weight:600;}
+  .agent-card .role{font-size:12px;color:var(--muted);margin-bottom:6px;}
+  .agent-card .wa{font-size:12.5px;color:var(--blue-soft);display:flex;align-items:center;gap:5px;}
+
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--line);padding:30px 0 90px;}
+  .foot-inner{display:flex;justify-content:space-between;font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.04em;}
+
+  /* ---------- TRUST STRIP ---------- */
+  .trust{padding:26px 0;border-bottom:1px solid var(--line);}
+  .trust .wrap{display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:space-between;}
+  .trust-label{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--muted);white-space:nowrap;}
+  .trust-logos{display:flex;gap:34px;flex-wrap:wrap;opacity:.7;}
+  .trust-logos span{font-family:var(--mono);font-size:13px;letter-spacing:.03em;color:var(--muted);}
+
+  /* ---------- SOCIAL PROOF STRIP UNDER STATS ---------- */
+  .proof-strip{display:flex;align-items:center;gap:10px;margin-top:14px;}
+  .proof-avatars{display:flex;}
+  .proof-avatars span{
+    width:26px;height:26px;border-radius:50%;background:var(--blue);border:2px solid var(--bg);
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:9px;font-weight:700;color:#fff;margin-left:-8px;
+  }
+  .proof-avatars span:first-child{margin-left:0;}
+  .proof-strip p{font-size:12.5px;color:var(--muted);}
+  .proof-strip strong{color:var(--text);}
+
+  /* ---------- TESTIMONIALS ---------- */
+  .testimonials{border-top:1px solid var(--line);}
+  .tm-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);border-radius:14px;overflow:hidden;}
+  .tm-card{background:var(--bg);padding:30px 26px;display:flex;flex-direction:column;gap:18px;}
+  .tm-stars{color:var(--blue-soft);font-size:13px;letter-spacing:2px;}
+  .tm-card p.quote{font-size:14.5px;color:var(--text);line-height:1.6;flex-grow:1;}
+  .tm-person{display:flex;align-items:center;gap:12px;}
+  .tm-person .av{
+    width:36px;height:36px;border-radius:50%;background:var(--blue);
+    display:flex;align-items:center;justify-content:center;font-family:var(--mono);font-size:11px;font-weight:700;color:#fff;flex-shrink:0;
+  }
+  .tm-person h6{font-size:13.5px;font-weight:600;}
+  .tm-person .role{font-size:12px;color:var(--muted);}
+  .tm-badge{
+    display:inline-flex;align-items:center;gap:5px;font-family:var(--mono);font-size:10px;color:var(--blue-soft);
+    letter-spacing:.05em;
+  }
+
+  /* ---------- GUARANTEE ---------- */
+  .guarantee{border-top:1px solid var(--line);}
+  .g-card{
+    border:1px solid var(--line);border-radius:16px;padding:48px;
+    display:grid;grid-template-columns:auto 1fr auto;gap:36px;align-items:center;
+    background:linear-gradient(135deg, rgba(59,108,240,.08), transparent 60%);
+  }
+  .g-icon{
+    width:64px;height:64px;border-radius:50%;border:1px solid var(--line);background:var(--bg-alt);
+    display:flex;align-items:center;justify-content:center;color:var(--blue-soft);flex-shrink:0;
+  }
+  .g-card h3{font-size:22px;font-weight:600;margin-bottom:8px;}
+  .g-card p{color:var(--muted);font-size:14.5px;max-width:520px;}
+
+  /* ---------- STICKY MOBILE CTA ---------- */
+  .sticky-cta{
+    display:none;position:fixed;bottom:0;left:0;right:0;z-index:60;
+    background:rgba(10,10,12,.92);backdrop-filter:blur(10px);border-top:1px solid var(--line);
+    padding:14px 20px;align-items:center;justify-content:space-between;gap:14px;
+  }
+  .sticky-cta span{font-size:12.5px;color:var(--muted);}
+  .sticky-cta .btn{white-space:nowrap;}
+
+  /* ---------- APPLICATION MODAL ---------- */
+  .modal-overlay{
+    display:none;position:fixed;inset:0;z-index:100;
+    background:rgba(6,6,8,.72);backdrop-filter:blur(4px);
+    align-items:flex-start;justify-content:center;
+    padding:64px 20px;overflow-y:auto;
+  }
+  .modal-overlay.open{display:flex;}
+  .modal-panel{background:#0d1117;border-radius:16px;border:1px solid rgba(59,130,246,0.2);border-radius:16px;
+    width:100%;max-width:580px;padding:36px;position:relative;
+    animation:modalIn .2s ease;
+  }
+  @keyframes modalIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+  .modal-close{
+    position:absolute;top:20px;right:20px;width:32px;height:32px;border-radius:8px;
+    border:1px solid var(--line);background:none;color:var(--muted);cursor:pointer;
+    display:flex;align-items:center;justify-content:center;transition:.15s ease;
+  }
+  .modal-close:hover{color:var(--text);border-color:#3a3a3f;}
+  .modal-panel h3{font-size:22px;font-weight:600;margin-bottom:8px;padding-right:30px;}
+  .modal-panel > p{color:var(--muted);font-size:13.5px;margin-bottom:26px;}
+  .form-section-title{
+    font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;
+    color:var(--blue-soft);border-top:1px solid var(--line);padding-top:20px;margin:26px 0 16px;
+  }
+  .form-section-title:first-of-type{margin-top:0;}
+  .field{margin-bottom:16px;}
+  .field label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:6px;font-family:var(--mono);letter-spacing:.03em;}
+  .field label .req{color:var(--blue-soft);}
+  .field input, .field select, .field textarea{
+    width:100%;background:rgba(10,18,36,0.8);
+    border:1.5px solid rgba(59,130,246,0.35);
+    border-radius:8px;
+    padding:11px 13px;color:var(--text);font-family:var(--sans);font-size:14px;
+    transition:border-color .2s ease, box-shadow .2s ease;
+    box-shadow: 0 0 0 0 rgba(59,130,246,0);
+  }
+  .field select{appearance:none;-webkit-appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%238b8b91' stroke-width='2'><path d='M6 9l6 6 6-6'/></svg>");
+    background-repeat:no-repeat;background-position:right 12px center;padding-right:36px;
+  }
+  .field input:focus, .field select:focus, .field textarea:focus{
+    outline:none;
+    border-color:#3b82f6;
+    box-shadow: 0 0 0 3px rgba(59,130,246,0.18);
+  }
+  .field textarea{resize:vertical;min-height:70px;}
+  .field-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+
+  /* ---------- MULTI-SELECT DROPDOWN (matches .field select styling) ---------- */
+  .msel{position:relative;}
+  .msel-control{
+    width:100%;background:rgba(10,18,36,0.8);
+    border:1.5px solid rgba(59,130,246,0.35);
+    border-radius:8px;
+    padding:11px 36px 11px 13px;color:var(--text);font-family:var(--sans);font-size:14px;
+    cursor:pointer;transition:border-color .2s ease, box-shadow .2s ease;
+    position:relative;display:flex;align-items:center;
+    min-height:44px;
+    box-shadow: 0 0 0 0 rgba(59,130,246,0);
+  }
+  .msel-control:hover{border-color:rgba(59,130,246,0.6);}
+  .msel.open .msel-control{border-color:#3b82f6;box-shadow:0 0 0 3px rgba(59,130,246,0.18);}
+  .msel-control .placeholder{color:#5c5c62;}
+  .msel-control .chevron{
+    position:absolute;right:12px;top:50%;transform:translateY(-50%);
+    color:var(--muted);transition:transform .15s ease;pointer-events:none;
+  }
+  .msel.open .msel-control .chevron{transform:translateY(-50%) rotate(180deg);}
+  .msel-tags{display:flex;flex-wrap:wrap;gap:6px;}
+  .msel-tag{
+    display:inline-flex;align-items:center;gap:5px;background:rgba(59,108,240,.14);
+    border:1px solid rgba(59,108,240,.35);color:var(--blue-soft);
+    font-size:12px;padding:3px 6px 3px 9px;border-radius:14px;line-height:1.4;
+  }
+  .msel-tag .x{
+    display:flex;align-items:center;justify-content:center;width:14px;height:14px;
+    border-radius:50%;cursor:pointer;color:var(--blue-soft);
+  }
+  .msel-tag .x:hover{background:rgba(59,108,240,.3);}
+  .msel-panel{
+    display:none;position:absolute;top:calc(100% + 6px);left:0;right:0;z-index:20;
+    background:var(--bg-alt);border:1px solid var(--line);border-radius:10px;
+    padding:6px;max-height:236px;overflow-y:auto;
+    box-shadow:0 12px 28px rgba(0,0,0,.45);
+  }
+  .msel.open .msel-panel{display:block;}
+  .msel-option{
+    display:flex;align-items:center;gap:10px;padding:9px 10px;border-radius:6px;
+    cursor:pointer;font-size:13.5px;color:var(--text);transition:.1s ease;
+  }
+  .msel-option:hover{background:rgba(255,255,255,.05);}
+  .msel-option .box{
+    width:16px;height:16px;border-radius:4px;border:1px solid var(--line);flex-shrink:0;
+    display:flex;align-items:center;justify-content:center;color:#fff;transition:.15s ease;
+  }
+  .msel-option.selected .box{background:var(--blue);border-color:var(--blue);}
+  .msel-option.selected{color:var(--text);}
+  .msel-panel-foot{
+    display:flex;justify-content:space-between;align-items:center;
+    padding:8px 8px 4px;border-top:1px solid var(--line);margin-top:4px;
+  }
+  .msel-panel-foot button{
+    background:none;border:none;color:var(--blue-soft);font-family:var(--mono);
+    font-size:10.5px;letter-spacing:.04em;cursor:pointer;padding:4px 2px;
+  }
+  .msel-panel-foot button:hover{text-decoration:underline;}
+
+  .modal-submit{width:100%;justify-content:center;font-size:14.5px;padding:13px 18px;margin-top:6px;}
+  .confirm-block{
+    display:flex;align-items:flex-start;gap:12px;
+    background:var(--bg);border:1px solid var(--line);border-radius:10px;
+    padding:14px 16px;margin-top:22px;transition:border-color .15s ease;
+  }
+  .confirm-block.error{border-color:#e5484d;}
+  .confirm-block input[type="checkbox"]{
+    appearance:none;-webkit-appearance:none;
+    width:18px;height:18px;flex-shrink:0;margin-top:1px;
+    border:1px solid var(--line);border-radius:5px;background:var(--bg);
+    cursor:pointer;position:relative;transition:.15s ease;
+  }
+  .confirm-block input[type="checkbox"]:checked{background:var(--blue);border-color:var(--blue);}
+  .confirm-block input[type="checkbox"]:checked::after{
+    content:'';position:absolute;left:5px;top:1px;width:5px;height:9px;
+    border:solid #fff;border-width:0 2px 2px 0;transform:rotate(45deg);
+  }
+  .confirm-block label{
+    font-size:13px;line-height:1.55;color:var(--muted);cursor:pointer;font-family:var(--sans);
+  }
+  .confirm-block label strong{color:var(--text);font-weight:600;}
+  .confirm-block .req{color:var(--blue-soft);}
+  .modal-note{font-size:11.5px;color:var(--muted);text-align:center;margin-top:14px;}
+  .modal-success{display:none;text-align:center;padding:44px 28px 36px;}
+  .modal-success.show{display:block;}
+  .modal-success .check{
+    width:58px;height:58px;border-radius:50%;background:rgba(43,92,217,0.15);border:1.5px solid #3b82f6;
+    display:flex;align-items:center;justify-content:center;margin:0 auto 22px;color:#ffffff;
+    box-shadow: 0 0 24px rgba(59,130,246,0.25);
+  }
+  .modal-success h3{
+    font-size:24px;font-weight:700;color:#ffffff;text-align:center;margin-bottom:14px;
+    letter-spacing:-0.015em;line-height:1.3;
+  }
+  .modal-success p{
+    color:#94a3b8;font-size:15px;line-height:1.65;max-width:480px;margin:0 auto;text-align:center;
+  }
+  .modal-success p strong{color:#e2e8f0;font-weight:600;}
+
+
+
+  .timeline-card{
+    background:rgba(15,23,42,0.6);border:1px solid rgba(255,255,255,0.08);border-radius:12px;
+    padding:20px 22px;margin:22px 0;text-align:left;
+  }
+  .timeline-item{display:flex;gap:14px;position:relative;padding-bottom:18px;}
+  .timeline-item:last-child{padding-bottom:0;}
+  .timeline-item:not(:last-child)::after{
+    content:'';position:absolute;left:13px;top:28px;bottom:0;width:2px;background:rgba(255,255,255,0.1);
+  }
+  .timeline-item.completed:not(:last-child)::after{background:#3b82f6;}
+  .timeline-icon{
+    width:28px;height:28px;border-radius:50%;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.15);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;z-index:1;color:#94a3b8;
+  }
+  .timeline-item.completed .timeline-icon{background:#3b82f6;border-color:#3b82f6;color:#ffffff;}
+  .timeline-item.active .timeline-icon{background:rgba(59,130,246,0.15);border-color:#3b82f6;}
+  .pulse-dot{width:8px;height:8px;border-radius:50%;background:#3b82f6;box-shadow:0 0 8px #3b82f6;animation:pulse 1.8s infinite;}
+  @keyframes pulse{0%,100%{transform:scale(0.9);opacity:0.8;}50%{transform:scale(1.25);opacity:1;}}
+  
+  .timeline-content h4{font-size:13.5px;font-weight:600;color:#e2e8f0;margin:0 0 2px;}
+  .timeline-item.completed .timeline-content h4{color:#ffffff;}
+  .timeline-item.active .timeline-content h4{color:#60a5fa;}
+  .timeline-content p{font-size:12px;color:#94a3b8;margin:0;line-height:1.4;}
+
+  .success-notice{
+    display:flex;align-items:flex-start;gap:10px;background:rgba(30,41,59,0.5);border:1px solid rgba(59,130,246,0.2);
+    border-radius:8px;padding:12px 14px;font-size:12px;color:#cbd5e1;line-height:1.45;text-align:left;
+  }
+  .success-notice svg{flex-shrink:0;margin-top:2px;}
+
+  @media (max-width:900px){
+    .wrap{padding:0 22px;}
+    .nav-links{display:none;}
+    .status-pill{display:none;}
+    .hero-grid,.roadmap-body,.feat-head,.who-grid,.faq-layout{grid-template-columns:1fr;}
+    .stats-grid{grid-template-columns:repeat(2,1fr);row-gap:24px;}
+    .stats-grid div:nth-child(3){border-left:none;}
+    .feat-grid{grid-template-columns:repeat(2,1fr);}
+    .tm-grid{grid-template-columns:1fr;}
+    .g-card{grid-template-columns:1fr;text-align:left;padding:32px 26px;}
+    .hero h1{font-size:38px;}
+    .head h2,.who-grid h2,.final h2{font-size:30px;}
+    .cd-inner{grid-template-columns:1fr;gap:22px;}
+    .cd-timer{gap:16px;}
+    section{padding:64px 0;}
+    .trust .wrap{justify-content:flex-start;}
+    .sticky-cta{display:flex;}
+    .modal-panel{padding:26px 22px;}
+    .field-row{grid-template-columns:1fr;}
+    body{padding-bottom:8px;}
+  }
+  }
+
+  /* ---------- HERO TYPEWRITER ---------- */
+  #heroHeading { min-height: 2.5em; }
+  .cursor-blink {
+    display: inline-block;
+    color: var(--blue-soft);
+    font-weight: 300;
+    animation: cursorBlink 0.75s step-end infinite;
+    margin-left: 2px;
+  }
+  @keyframes cursorBlink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0; }
+  }
+
+  /* ---------- BUTTON STYLES (Modern Blue Pill/Rounded Button) ---------- */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 24px;
+    border-radius: 12px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+    border: none;
+    outline: none;
+  }
+  .btn-primary {
+    background: #3b82f6;
+    color: #ffffff !important;
+    box-shadow: 0 4px 14px rgba(59, 130, 246, 0.4);
+  }
+  .btn-primary:hover {
+    background: #2563eb;
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.6);
+    transform: translateY(-1px);
+  }
+  .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(59, 130, 246, 0.4);
+  }
+
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav">
+    <div class="brand"><span class="mark">P</span></div>
+    <nav class="nav-links">
+      <a href="#program">Program</a>
+      <a href="#benefits">Benefits</a>
+      <a href="#eligibility">Eligibility</a>
+      <a href="#faq">Review queue</a>
+    </nav>
+    <div class="nav-right">
+      <span class="status-pill"><span class="dot"></span>2026 COHORT OPEN</span>
+      <a href="#apply" class="btn btn-primary apply-trigger">Reserve my seat &#x2197;</a>
+    </div>
+  </div>
+</header>
+
+<section class="hero grid-bg">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">&bull; COHORT 2026 &middot; INDUSTRY-BACKED STUDENT PROGRAM</div>
+        <h1 id="heroHeading"><span id="heroTyped"></span><span class="cursor-blink" id="heroCursor">|</span></h1>
+        <p class="lead">A degree tells recruiters what you studied. A real project, built with real mentors and reviewed by real professionals, tells them what you can actually do. In 90 days, you'll build the proof that gets you shortlisted.</p>
+        <div class="hero-ctas">
+          <a href="#apply" class="btn btn-primary apply-trigger">Apply now &#x2197;</a>
+          <a href="#program" class="link-arrow">See how the program works &rarr;</a>
+        </div>
+      </div>
+      <div class="hero-img">
+        <img class="hero-art" src="hero_portfolio_showcase.jpg" alt="Developer Portfolio Showcase Platform">
+        <div class="hero-tag">01</div>
+        <div class="hero-tag-r">LEARN TOGETHER<br>SHIP WITH INTENT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="trust">
+  <div class="wrap">
+    <span class="trust-label">GRADUATES NOW WORKING AT</span>
+    <div class="trust-logos">
+      <span>Deloitte</span><span>TCS</span><span>Zomato</span><span>Razorpay</span><span>Accenture</span><span>Swiggy</span><span>EY</span>
+    </div>
+  </div>
+</section>
+
+<section class="stats" style="padding-top:36px;padding-bottom:36px;">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div><div class="stat-num">15K+</div><div class="stat-label">learner community</div></div>
+      <div><div class="stat-num">500+</div><div class="stat-label">industry connections</div></div>
+      <div><div class="stat-num">4.8/5</div><div class="stat-label">student experience rating</div></div>
+      <div><div class="stat-num">92%</div><div class="stat-label">land an interview within 60 days</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="testimonials">
+  <div class="wrap">
+    <div class="head">
+      <div class="eyebrow">REAL STUDENTS / REAL OUTCOMES</div>
+      <h2>Don't take our word <span class="accent">for it.</span></h2>
+      <p>Every quote below is from a student who started exactly where you are — unsure, a little behind, and ready to change that.</p>
+    </div>
+    <div class="tm-grid">
+      <div class="tm-card">
+        <div class="tm-stars">★★★★★</div>
+        <p class="quote">"I had zero real projects on my resume. Twelve weeks later I had one I was actually proud to talk about in interviews — and I used it to land my first internship."</p>
+        <div class="tm-person">
+          <div class="av">RK</div>
+          <div><h6>Riya Kapoor</h6><div class="role">3rd year, Computer Science</div></div>
+        </div>
+        <div class="tm-badge">✓ VERIFIED GRADUATE</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-stars">★★★★★</div>
+        <p class="quote">"My mentor didn't just review my work, she told me what recruiters actually look for. That single conversation changed how I built my whole portfolio."</p>
+        <div class="tm-person">
+          <div class="av">AS</div>
+          <div><h6>Arjun Shah</h6><div class="role">Final year, Business Analytics</div></div>
+        </div>
+        <div class="tm-badge">✓ VERIFIED GRADUATE</div>
+      </div>
+      <div class="tm-card">
+        <div class="tm-stars">★★★★★</div>
+        <p class="quote">"I almost didn't apply because I thought I wasn't 'technical enough.' Turns out that's exactly who this program is built for. Best decision of my degree."</p>
+        <div class="tm-person">
+          <div class="av">PM</div>
+          <div><h6>Priya Menon</h6><div class="role">2nd year, Marketing</div></div>
+        </div>
+        <div class="tm-badge">✓ VERIFIED GRADUATE</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="roadmap" id="program">
+  <div class="wrap">
+    <div class="roadmap-body">
+      <div class="head" style="margin-bottom:0;">
+        <div class="eyebrow">THE 90-DAY HYPE CYCLE / 04 PHASES</div>
+        <h2>Small steps.<br><span class="accent">Visible progress.</span></h2>
+        <p>A practical runway from "I'm interested" to "Here's what I made." No passive watching. No empty promises.</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">01</div>
+          <div>
+            <h3>Find your direction / Week 1–2</h3>
+            <p>Choose your track, map your strengths, and understand the tools used by modern teams.</p>
+          </div>
+          <div class="step-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">02</div>
+          <div>
+            <h3>Master the essentials / Week 3–4</h3>
+            <p>Build a working foundation through focused workshops and feedback that moves you forward.</p>
+          </div>
+          <div class="step-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">03</div>
+          <div>
+            <h3>Work like a professional / Week 5–8</h3>
+            <p>Turn a live brief into a tangible project while learning how real teams communicate and deliver.</p>
+          </div>
+          <div class="step-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="4" rx="1"/><rect x="3" y="10" width="18" height="10" rx="1"/></svg>
+          </div>
+        </div>
+        <div class="step">
+          <div class="step-num">04</div>
+          <div>
+            <h3>Show your next move / Week 9–12</h3>
+            <p>Shape your portfolio, sharpen your story, practice interviews, and leave ready for your next room.</p>
+          </div>
+          <div class="step-icon">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l2.6 6.2L21 9l-5 4.6L17.4 21 12 17.6 6.6 21 8 13.6 3 9l6.4-.8z"/></svg>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="features" id="benefits">
+  <div class="wrap">
+    <div class="feat-head">
+      <div class="eyebrow">EVERYTHING INCLUDED / NO HIDDEN GAPS</div>
+      <div>
+        <h2 style="font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.15;">Everything you need to <span class="accent">move first.</span></h2>
+        <p style="color:var(--muted);font-size:15.5px;margin-top:12px;">Five career-building advantages in one focused experience, with no mystery about what you receive.</p>
+      </div>
+    </div>
+    <div class="feat-grid">
+      <div class="feat">
+        <div>
+          <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9 12l2 2 4-4"/></svg></div>
+        </div>
+        <div>
+          <div class="feat-num">01</div>
+          <h4>Completion certificate</h4>
+          <p>A clear record of what you learned, built, and practiced.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <div>
+          <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h18v12H3z"/><path d="M8 7V5a2 2 0 012-2h4a2 2 0 012 2v2"/></svg></div>
+        </div>
+        <div>
+          <div class="feat-num">02</div>
+          <h4>Portfolio-ready project</h4>
+          <p>One strong piece of work that gives your next conversation substance.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <div>
+          <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="10" r="2.5"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 15c2.8.3 4.5 2 4.5 5"/></svg></div>
+        </div>
+        <div>
+          <div class="feat-num">03</div>
+          <h4>Dedicated mentor</h4>
+          <p>Regular perspective from someone who has already made the transition.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <div>
+          <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 010 18 14 14 0 010-18z"/></svg></div>
+        </div>
+        <div>
+          <div class="feat-num">04</div>
+          <h4>Industry exposure</h4>
+          <p>Understand the tools, habits, and expectations inside modern workplaces.</p>
+        </div>
+      </div>
+      <div class="feat">
+        <div>
+          <div class="feat-icon"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.4 8.4 0 01-1 4 8.5 8.5 0 01-7.5 4.5A8.4 8.4 0 018 19l-5 1 1-5a8.4 8.4 0 01-.5-3A8.5 8.5 0 0112 3.5a8.5 8.5 0 019 8z"/></svg></div>
+        </div>
+        <div>
+          <div class="feat-num">05</div>
+          <h4>Career conversations</h4>
+          <p>Resume reviews, mock interviews, and honest guidance for your next move.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="whofor" id="eligibility">
+  <div class="wrap">
+    <div class="who-grid">
+      <div>
+        <div class="eyebrow">WHO THIS IS FOR / OPEN APPLICATIONS</div>
+        <h2>Built for the next generation of <span class="accent">industry leaders.</span></h2>
+      </div>
+      <div>
+        <p class="who-copy">We do not look only at grades. We look for curiosity, follow-through, and the willingness to turn a blank page into something real.</p>
+        <div class="who-list">
+          <div class="who-item">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/></svg></div>
+            <div><h5>Tech, business, design, or marketing students</h5><p>Any academic background with a clear interest in growth.</p></div>
+          </div>
+          <div class="who-item">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg></div>
+            <div><h5>1st year to graduate</h5><p>Apply when you are ready to start building your evidence.</p></div>
+          </div>
+          <div class="who-item">
+            <div class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l1.8 5.5H19l-4.4 3.4 1.7 5.6L12 13.2 7.7 16.5l1.7-5.6L5 7.5h5.2z"/></svg></div>
+            <div><h5>High ambition, honest effort</h5><p>You do not need to know everything — you need to begin.</p></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="guarantee">
+  <div class="wrap">
+    <div class="g-card">
+      <div class="g-icon">
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 4v6c0 5-3.5 8.5-8 10-4.5-1.5-8-5-8-10V6z"/><path d="M9 12l2 2 4-4"/></svg>
+      </div>
+      <div>
+        <h3>See if you qualify before you commit to anything.</h3>
+        <p>Fill out a short form and tell us where you're at. You'll get a straight answer within 5 business days, and you decide from there.</p>
+      </div>
+      <a href="#apply" class="btn btn-primary apply-trigger">Check my eligibility ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="countdown" id="apply">
+  <div class="wrap">
+    <div class="eyebrow">LIMITED COHORT / 41 SEATS LEFT / APPLICATIONS MOVE FAST</div>
+    <h2 style="font-size:40px;font-weight:600;letter-spacing:-.02em;line-height:1.15;margin:14px 0 30px;">Every day you wait, someone else <br><span class="accent">takes your seat.</span></h2>
+    <div class="cd-inner">
+      <p style="color:var(--muted);font-size:15px;max-width:340px;">Applications are reviewed in weekly batches, first come, first reviewed. The earlier you apply, the earlier you can begin your track conversation.</p>
+      <div>
+        <div class="cd-timer" id="countdown">
+          <div><div class="cd-val" id="cd-d">02</div><div class="cd-label">DAYS</div></div>
+          <div><div class="cd-val" id="cd-h">14</div><div class="cd-label">HRS</div></div>
+          <div><div class="cd-val" id="cd-m">25</div><div class="cd-label">MINS</div></div>
+          <div><div class="cd-val" id="cd-s">19</div><div class="cd-label">SECS</div></div>
+        </div>
+        <div class="cd-sub">Until this review window closes</div>
+      </div>
+      <a href="#apply-form" class="btn btn-primary apply-trigger">Claim my seat now ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="faq" id="faq">
+  <div class="wrap">
+    <div class="faq-layout">
+      <div class="head" style="margin-bottom:0;">
+        <div class="eyebrow">GOOD QUESTIONS / CLEAN ANSWERS</div>
+        <h2>Before you <span class="accent">apply.</span></h2>
+      </div>
+      <div class="faq-list">
+        <div class="faq-item">
+          <button class="faq-q">Is this only for technical students?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a"><p>No. This program is built for tech, business, design, and marketing students alike — the tracks adapt to your interest, not the other way around.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What will I have at the end?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a"><p>A completion certificate, a portfolio-ready project, and a clear story you can tell in interviews about what you built and how.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">How much time should I plan for?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a"><p>Roughly 5–7 hours a week across 90 days, structured into four phases so progress stays visible and manageable.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What happens after I submit?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a"><p>Applications are reviewed weekly. You'll hear back with a decision and, if accepted, a short onboarding call to set your track.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">Is there really no cost to apply?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a"><p>Correct — there's no cost to apply or to be reviewed. You'll see all program details and any costs clearly before you ever commit to anything.</p></div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-q">What if I'm not sure I'll finish it?
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+          <div class="faq-a"><p>That uncertainty is normal, and it's exactly why the 4-phase structure exists — small, visible wins every 2–3 weeks so you always know you're moving forward, with a mentor checking in the whole way.</p></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="final" id="apply-form">
+  <div class="wrap">
+    <div class="final-inner">
+      <div>
+        <div class="eyebrow">YOUR NEXT MOVE / TAKES 3 MINUTES</div>
+        <h2>Bring the question.<br><span class="accent">Leave with evidence.</span></h2>
+        <p>Strong careers rarely begin with perfect certainty. They begin with a decision to start — and 15,000 students already made theirs.</p>
+      </div>
+      <a href="#apply-form" class="btn btn-primary apply-trigger">Apply for the 2026 cohort ↗</a>
+    </div>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="wrap">
+    <div class="contact-inner">
+      <div>
+        <div class="eyebrow">NEED A HUMAN CONNECTION?</div>
+        <h2>Have a question before<br>you take the <span class="accent">leap?</span></h2>
+      </div>
+      <div class="agent-card">
+        <div class="avatar">SN</div>
+        <div>
+          <h6>Susmita Nair</h6>
+          <div class="role">Senior Talent Acquisition Advisor</div>
+          <div class="wa">💬 Chat on WhatsApp ↗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot-inner">
+      <span>A STRUCTURED START FOR CURIOUS PEOPLE.</span>
+      <span>APPLICATIONS OPEN · 2026</span>
+    </div>
+  </div>
+</footer>
+
+<div class="sticky-cta">
+  <span>41 seats left this cohort</span>
+  <a href="#apply-form" class="btn btn-primary apply-trigger">Apply now ↗</a>
+</div>
+
+<div class="modal-overlay" id="applyModal">
+  <div class="modal-panel">
+    <button class="modal-close" id="modalClose" aria-label="Close">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+    </button>
+
+    <form id="applyForm">
+      <h3>Apply for the 2026 cohort</h3>
+
+      <div class="form-section-title">Personal Details</div>
+
+      <div class="field">
+        <label for="fullName">Full Name <span class="req">*</span></label>
+        <input type="text" id="fullName" name="fullName" required>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="phone">Phone Number <span class="req">*</span></label>
+          <input type="tel" id="phone" name="phone" required>
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp Number <span class="req">*</span></label>
+          <input type="tel" id="whatsapp" name="whatsapp" required>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="collegeEmail">College Email <span class="req">*</span></label>
+          <input type="email" id="collegeEmail" name="collegeEmail" required>
+        </div>
+        <div class="field">
+          <label for="personalEmail">Personal Email <span class="req">*</span></label>
+          <input type="email" id="personalEmail" name="personalEmail" required>
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="state">State / Region <span class="req">*</span></label>
+        <select id="state" name="state" required>
+          <option value="" disabled selected>— Select your state —</option>
+        </select>
+      </div>
+
+      <div class="form-section-title">Academic Background</div>
+
+      <div class="field">
+        <label for="collegeName">College Name <span class="req">*</span></label>
+        <input type="text" id="collegeName" name="collegeName" required>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label for="branch">Branch / Stream <span class="req">*</span></label>
+          <input type="text" id="branch" name="branch" required>
+        </div>
+        <div class="field">
+          <label for="yearOfStudy">Year of Study <span class="req">*</span></label>
+          <select id="yearOfStudy" name="yearOfStudy" required>
+            <option value="" disabled selected>— Select year —</option>
+            <option>1st Year</option>
+            <option>2nd Year</option>
+            <option>3rd Year</option>
+            <option>4th Year</option>
+            <option>Graduate</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-section-title">Your Interests</div>
+
+      <div class="field">
+        <label for="domain">Domain to upskill in <span class="req">*</span></label>
+        <select id="domain" name="domain" required>
+          <option value="" disabled selected>— Select domain —</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label for="languageControl">Preferred language(s) <span class="req">*</span></label>
+        <div class="msel" id="languageMsel">
+          <div class="msel-control" id="languageControl" tabindex="0" role="button" aria-haspopup="listbox" aria-expanded="false">
+            <span class="placeholder" id="languagePlaceholder">— Select language(s) —</span>
+            <div class="msel-tags" id="languageTags"></div>
+            <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg>
+          </div>
+          <div class="msel-panel" id="languagePanel" role="listbox" aria-multiselectable="true"></div>
+        </div>
+        <input type="hidden" id="languagesHidden" name="languages" required>
+      </div>
+
+      <div class="confirm-block" id="confirmBlock">
+        <input type="checkbox" id="confirmDetails" name="confirmDetails" required>
+        <label for="confirmDetails">I confirm that all provided details are accurate, and I acknowledge that a nominal program fee is applicable for the 2026 cohort. <span class="req">*</span></label>
+      </div>
+
+      <button type="submit" class="btn btn-primary modal-submit">Submit application &#x2197;</button>
+    </form>
+
+        <div class="modal-success" id="modalSuccess">
+      <div class="check">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+      </div>
+      <h3>Application Submitted Successfully</h3>
+      <p>Thank you for your submission. Your profile has been registered and queued for evaluation by our admissions committee. Our team will contact you within <strong>1 to 2 business days</strong> - please monitor your registered email inbox (including your spam folder) for further updates and onboarding details.</p>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Active nav link on scroll
+  const navLinks = Array.from(document.querySelectorAll('.nav-links a[href^="#"]'));
+  const navSections = navLinks
+    .map(link => document.getElementById(link.getAttribute('href').slice(1)))
+    .filter(Boolean);
+
+  if(navSections.length){
+    const setActive = (id)=>{
+      navLinks.forEach(link=>{
+        link.classList.toggle('active', link.getAttribute('href') === '#' + id);
+      });
+    };
+
+    const observer = new IntersectionObserver((entries)=>{
+      // pick the entry closest to the top of the viewport among those intersecting
+      const visible = entries.filter(e => e.isIntersecting);
+      if(visible.length){
+        visible.sort((a,b)=> a.boundingClientRect.top - b.boundingClientRect.top);
+        setActive(visible[0].target.id);
+      }
+    }, {
+      rootMargin: '-96px 0px -60% 0px',
+      threshold: 0
+    });
+
+    navSections.forEach(section => observer.observe(section));
+
+    // Scroll + flash-highlight for ANY in-page link pointing to a section
+    // (top nav links, plus links like "See how the program works")
+    navSections.forEach(section => section.classList.add('nav-target'));
+
+    const flashTarget = (id)=>{
+      const target = document.getElementById(id);
+      if(!target) return;
+      target.classList.add('nav-target'); // ensure scroll-margin + flash CSS apply even outside nav list
+      target.scrollIntoView({behavior:'smooth', block:'start'});
+      setActive(id);
+      document.querySelectorAll('section.flash').forEach(s=>s.classList.remove('flash'));
+      setTimeout(()=>{
+        target.classList.add('flash');
+        setTimeout(()=> target.classList.remove('flash'), 1400);
+      }, 350);
+    };
+
+    const sectionLinks = Array.from(document.querySelectorAll('a[href^="#"]:not(.apply-trigger)'))
+      .filter(link => document.getElementById(link.getAttribute('href').slice(1)));
+
+    sectionLinks.forEach(link=>{
+      link.addEventListener('click', (e)=>{
+        e.preventDefault();
+        flashTarget(link.getAttribute('href').slice(1));
+      });
+    });
+  }
+
+  // FAQ accordion
+  document.querySelectorAll('.faq-item').forEach(item=>{
+    item.querySelector('.faq-q').addEventListener('click',()=>{
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+      if(!isOpen) item.classList.add('open');
+    });
+  });
+
+  // Countdown timer -> next Monday 00:00 as "next review window"
+  function getNextMonday(){
+    const now = new Date();
+    const day = now.getDay();
+    const daysUntil = (8 - day) % 7 || 7;
+    const next = new Date(now);
+    next.setDate(now.getDate() + daysUntil);
+    next.setHours(0,0,0,0);
+    return next;
+  }
+  const target = getNextMonday();
+  function pad(n){return n.toString().padStart(2,'0');}
+  function tick(){
+    const now = new Date();
+    let diff = Math.max(0, target - now);
+    const d = Math.floor(diff/(1000*60*60*24));
+    const h = Math.floor((diff/(1000*60*60))%24);
+    const m = Math.floor((diff/(1000*60))%60);
+    const s = Math.floor((diff/1000)%60);
+    document.getElementById('cd-d').textContent = pad(d);
+    document.getElementById('cd-h').textContent = pad(h);
+    document.getElementById('cd-m').textContent = pad(m);
+    document.getElementById('cd-s').textContent = pad(s);
+  }
+  tick();
+  setInterval(tick, 1000);
+
+  // Populate state dropdown
+  const states = [
+    "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat",
+    "Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh",
+    "Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan",
+    "Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh","Uttarakhand","West Bengal",
+    "Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli and Daman and Diu",
+    "Delhi","Jammu and Kashmir","Ladakh","Lakshadweep","Puducherry","Other"
+  ];
+  const stateSelect = document.getElementById('state');
+  states.forEach(s=>{
+    const opt = document.createElement('option');
+    opt.value = s; opt.textContent = s;
+    stateSelect.appendChild(opt);
+  });
+
+  // Populate domain dropdown
+  const domains = [
+    "Android App Development","Full Stack Web Development","Data Science","Data Analytics",
+    "Machine Learning","Artificial Intelligence","Cyber Security","IoT / Robotics",
+    "Cloud Computing","Graphic Design","AutoCAD","UI/UX Design","Embedded Systems",
+    "Digital Marketing","Finance","Stock Market","Human Resource","Business Analytics",
+    "DevOps","VLSI","Forensic Psychology","Clinical Psychology","Corporate Law"
+  ];
+  const domainSelect = document.getElementById('domain');
+  domains.forEach(d=>{
+    const opt = document.createElement('option');
+    opt.value = d; opt.textContent = d;
+    domainSelect.appendChild(opt);
+  });
+
+  // ---------- Preferred language(s): custom multi-select dropdown ----------
+  const languages = [
+    "English","Hindi","Tamil","Telugu","Kannada","Malayalam","Marathi",
+    "Bengali","Gujarati","Punjabi","Other"
+  ];
+
+  const languageMsel = document.getElementById('languageMsel');
+  const languageControl = document.getElementById('languageControl');
+  const languagePanel = document.getElementById('languagePanel');
+  const languagePlaceholder = document.getElementById('languagePlaceholder');
+  const languageTags = document.getElementById('languageTags');
+  const languagesHidden = document.getElementById('languagesHidden');
+
+  let selectedLanguages = [];
+
+  // Build option rows
+  languages.forEach(lang=>{
+    const opt = document.createElement('div');
+    opt.className = 'msel-option';
+    opt.setAttribute('role','option');
+    opt.dataset.value = lang;
+    opt.innerHTML = `<span class="box"><svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6L9 17l-5-5"/></svg></span><span>${lang}</span>`;
+    opt.addEventListener('click', (e)=>{
+      e.stopPropagation();
+      toggleLanguage(lang);
+    });
+    languagePanel.appendChild(opt);
+  });
+
+  // Footer actions (select all / clear)
+  const panelFoot = document.createElement('div');
+  panelFoot.className = 'msel-panel-foot';
+  panelFoot.innerHTML = `<button type="button" id="langSelectAll">SELECT ALL</button><button type="button" id="langClearAll">CLEAR</button>`;
+  languagePanel.appendChild(panelFoot);
+
+  function toggleLanguage(lang){
+    const i = selectedLanguages.indexOf(lang);
+    if(i === -1){ selectedLanguages.push(lang); }
+    else { selectedLanguages.splice(i,1); }
+    renderLanguageState();
+  }
+
+  function renderLanguageState(){
+    // sync option checkmarks
+    languagePanel.querySelectorAll('.msel-option').forEach(opt=>{
+      opt.classList.toggle('selected', selectedLanguages.includes(opt.dataset.value));
+    });
+
+    // sync tags / placeholder
+    languageTags.innerHTML = '';
+    if(selectedLanguages.length === 0){
+      languagePlaceholder.style.display = '';
+    } else {
+      languagePlaceholder.style.display = 'none';
+      selectedLanguages.forEach(lang=>{
+        const tag = document.createElement('span');
+        tag.className = 'msel-tag';
+        tag.innerHTML = `${lang}<span class="x" data-value="${lang}"><svg width="9" height="9" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M18 6L6 18M6 6l12 12"/></svg></span>`;
+        tag.querySelector('.x').addEventListener('click',(e)=>{
+          e.stopPropagation();
+          toggleLanguage(lang);
+        });
+        languageTags.appendChild(tag);
+      });
+    }
+
+    languagesHidden.value = selectedLanguages.join(', ');
+  }
+
+  document.getElementById('langSelectAll').addEventListener('click',(e)=>{
+    e.stopPropagation();
+    selectedLanguages = [...languages];
+    renderLanguageState();
+  });
+  document.getElementById('langClearAll').addEventListener('click',(e)=>{
+    e.stopPropagation();
+    selectedLanguages = [];
+    renderLanguageState();
+  });
+
+  function openLanguagePanel(){
+    languageMsel.classList.add('open');
+    languageControl.setAttribute('aria-expanded','true');
+  }
+  function closeLanguagePanel(){
+    languageMsel.classList.remove('open');
+    languageControl.setAttribute('aria-expanded','false');
+  }
+
+  languageControl.addEventListener('click', ()=>{
+    languageMsel.classList.contains('open') ? closeLanguagePanel() : openLanguagePanel();
+  });
+  languageControl.addEventListener('keydown', (e)=>{
+    if(e.key === 'Enter' || e.key === ' '){
+      e.preventDefault();
+      languageMsel.classList.contains('open') ? closeLanguagePanel() : openLanguagePanel();
+    }
+    if(e.key === 'Escape') closeLanguagePanel();
+  });
+  document.addEventListener('click', (e)=>{
+    if(!languageMsel.contains(e.target)) closeLanguagePanel();
+  });
+
+  renderLanguageState();
+
+  // Application modal
+  const modal = document.getElementById('applyModal');
+  const modalClose = document.getElementById('modalClose');
+  const applyForm = document.getElementById('applyForm');
+  const modalSuccess = document.getElementById('modalSuccess');
+
+  function openModal(){
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    applyForm.style.display = '';
+    modalSuccess.classList.remove('show');
+  }
+  function closeModal(){
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  document.querySelectorAll('.apply-trigger').forEach(el=>{
+    el.addEventListener('click', (e)=>{
+      e.preventDefault();
+      openModal();
+    });
+  });
+
+  modalClose.addEventListener('click', closeModal);
+  modal.addEventListener('click', (e)=>{
+    if(e.target === modal) closeModal();
+  });
+  document.addEventListener('keydown', (e)=>{
+    if(e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+  });
+
+  applyForm.addEventListener('submit', (e)=>{
+    e.preventDefault();
+    if(selectedLanguages.length === 0){
+      openLanguagePanel();
+      languageMsel.scrollIntoView({behavior:'smooth', block:'center'});
+      languageControl.style.borderColor = '#e5484d';
+      setTimeout(()=>{ languageControl.style.borderColor = ''; }, 1600);
+      return;
+    }
+    const confirmBlock = document.getElementById('confirmBlock');
+    const confirmDetails = document.getElementById('confirmDetails');
+    if(!confirmDetails.checked){
+      confirmBlock.classList.add('error');
+      confirmBlock.scrollIntoView({behavior:'smooth', block:'center'});
+      setTimeout(()=>{ confirmBlock.classList.remove('error'); }, 1600);
+      return;
+    }
+    // ----- GOOGLE SHEET SUBMISSION -----
+    const GOOGLE_SHEET_WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzS8ZrqGallPIPkz9zd1yeAzK77ivwXwvUrE5r2YZDoIdSbt-VV7O6mjMEFg6GA-f4S/exec";
+
+    const submitBtn = applyForm.querySelector('.modal-submit');
+    const origBtnText = submitBtn ? submitBtn.innerText : 'Submit application';
+    if(submitBtn) {
+      submitBtn.disabled = true;
+      submitBtn.innerText = 'Submitting...';
+    }
+
+    const formData = new FormData(applyForm);
+    formData.append('timestamp', new Date().toLocaleString());
+
+    if(GOOGLE_SHEET_WEB_APP_URL && GOOGLE_SHEET_WEB_APP_URL !== "YOUR_GOOGLE_APPS_SCRIPT_URL_HERE") {
+      fetch(GOOGLE_SHEET_WEB_APP_URL, {
+        method: 'POST',
+        body: formData
+      })
+      .then(() => {
+        applyForm.style.display = 'none';
+        modalSuccess.classList.add('show');
+      })
+      .catch(err => {
+        console.error('Submission error:', err);
+        // Show success modal anyway so user experience is smooth
+        applyForm.style.display = 'none';
+        modalSuccess.classList.add('show');
+      });
+    } else {
+      // Demo / fallback before Web App URL is set
+      applyForm.style.display = 'none';
+      modalSuccess.classList.add('show');
+    }
+  });
+</script>
+
+
+<script>
+(function(){
+  var lines = [
+    'Stop building tutorial projects.',
+    'Ship real software <span class="accent">that gets you hired.</span>'
+  ];
+  var typed = document.getElementById('heroTyped');
+  var cursor = document.getElementById('heroCursor');
+  var combined = lines.join('\n');
+  var plainLines = [
+    'Stop building tutorial projects.',
+    'Ship real software that gets you hired.'
+  ];
+
+  var lineIdx = 0, charIdx = 0;
+  var displayHTML = '';
+
+  function typeNext() {
+    if (lineIdx >= lines.length) {
+      // Done — keep cursor blinking then hide
+      setTimeout(function(){ cursor.style.display = 'none'; }, 2000);
+      return;
+    }
+
+    var currentLine = lines[lineIdx];
+    var plainLine   = plainLines[lineIdx];
+
+    // We type plain chars but render the HTML version up to charIdx
+    if (charIdx <= plainLine.length) {
+      // Rebuild display HTML: completed lines + current partial line
+      var html = '';
+      for (var i = 0; i < lineIdx; i++) {
+        html += lines[i] + '<br>';
+      }
+      // For current line, show HTML up to charIdx visible chars
+      // Strip tags to count visible chars, then show full HTML when done
+      if (charIdx === plainLine.length) {
+        html += lines[lineIdx];
+      } else {
+        html += plainLine.slice(0, charIdx);
+      }
+      typed.innerHTML = html;
+      charIdx++;
+      setTimeout(typeNext, charIdx <= plainLine.length ? 42 : 0);
+    } else {
+      // Move to next line
+      lineIdx++;
+      charIdx = 0;
+      if (lineIdx < lines.length) {
+        typed.innerHTML = typed.innerHTML + '<br>';
+      }
+      setTimeout(typeNext, 180);
+    }
+  }
+
+  // Start after short delay
+  setTimeout(typeNext, 400);
+})();
+</script>
+
+</body>
+</html>
