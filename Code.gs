@@ -105,7 +105,7 @@ function sendConfirmationEmail(email, name, refId, college, branch, year, domain
   // DYNAMIC SUBJECT LINE: Your [Selected Track] Program Registration is Confirmed
   var trackTitle = domain || "IOTIP";
   var subject = "Your " + trackTitle + " Program Registration is Confirmed [" + refId + "]";
-  var waGroupUrl = "https://chat.whatsapp.com/FKC4AVeDHav3KPP3789KNf?s=cl&p=a&mlu=4&ilr=4";
+  var waGroupUrl = "https://chat.whatsapp.com/J3ipxChj5Av2VSBjneEDbu";
   
   var htmlBody = '<!DOCTYPE html><html><head><meta charset="utf-8">' +
     '<style>' +
